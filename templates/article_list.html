@@ -1,7 +1,15 @@
-{% extends 'index.html' %}
 {% load static %}
-{% block title %}Статьи{% endblock%}
-{%block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style_articles.css'%}">
+    <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <title>{% block title %} Статьи {% endblock title %}</title>
+</head>
+<body> 
     <section class="showcase">
             <header>
                 <a href={% url 'home' %}><h2 class="logo">Just Chill It</h2></a>
@@ -13,7 +21,7 @@
                                 <li><a href="{% url 'password_change' %}">Поменять пароль</a></li>
                                 <li>
                                     {% if user.is_superuser %}
-                                    <a href="{% url 'article_new' %}">Добавить новость</a>
+                                    <a href="{% url 'article_new' %}">Добавить статью</a>
                                     {% endif %}
                                 </li>
                                 <li><a href="{% url 'logout' %}">Выйти</a><p></li>
@@ -33,13 +41,13 @@
 
 
             <div class="overlay"></div>
-            <div class="text-articles-list" style="font-size:18px;"><br>
+            <div class="text-articles-list" style="font-size:18px; margin-left: 100px;"><br>
                 {% for article in object_list %}
                 
                 <h3><a href="{% url 'article_detail' article.pk %}"> <span >{{ article.title }}</span></a></h3><hr/></br></br>
                     
                     <div class="text-article-img">
-                    <img src="{{ article.cover.url }}" style="width:700px; height: 500px; margin-left: 300px;">
+                    <img src="{{ article.cover.url }}" style="width:800px; height: 400px; margin-left: 100px;">
                     </div>
                     
                     
@@ -78,5 +86,5 @@
                 showCase.classList.toggle('active')
             })
         </script>
-
-{% endblock content %}
+</body>
+</html>   

@@ -14,7 +14,7 @@
                                 <li><a href="{% url 'password_change' %}">Поменять пароль</a></li>
                                 <li>
                                     {% if user.is_superuser %}
-                                    <a href="{% url 'article_new' %}">Добавить новость</a>
+                                    <a href="{% url 'article_new' %}">Добавить статью</a>
                                     {% endif %}
                                 </li>
                                 <li><a href="{% url 'logout' %}">Выйти</a><p></li>
@@ -38,8 +38,8 @@
                     <h2>Статья</h2>
                     <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
                         {{ form.as_p }}
-                          <input type="file" name="myfile1">
-                        <button type="submit">Загрузка</button>
+                          {% comment %} <input type="file" name="myfile1"> {% endcomment %}
+                        {% comment %} <button type="submit">Загрузка</button> {% endcomment %}
                         <button class="btn btn-success ml-2" type="submit">Опубликовать</button>
                     </form>
             </div>

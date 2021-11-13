@@ -1,8 +1,15 @@
-{% extends 'index.html' %}
 {% load static %}
-{% block title %}{{ object.title }}{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style_article_detail.css'%}">
+    <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
+    <title>{{ object.title }}</title>
 
-{% block content %}
+
     <section class="showcase">
             <header>
                 <a href={% url 'home' %}><h2 class="logo">Just Chill It</h2></a>
@@ -14,7 +21,7 @@
                                 <li><a href="{% url 'password_change' %}">Поменять пароль</a></li>
                                 <li>
                                     {% if user.is_superuser %}
-                                    <a href="{% url 'article_new' %}">Добавить новость</a>
+                                    <a href="{% url 'article_new' %}">Добавить статью</a>
                                     {% endif %}
                                 </li>
                                 <li><a href="{% url 'logout' %}">Выйти</a><p></li>
@@ -35,21 +42,21 @@
             <div class="overlay"></div>
 
             
-            <div class="article-entry">
-                <div class="text-article" >
-                    <h2>{{ object.title }}</h2>
+            <div class="article-entry" >
+                <div class="text-article">
+                    <h2>{{ object.title }}</h2></br>
                     {% if object.cover.url%}
                     <div class="text-article-img">
-                    <img src="{{ object.cover.url }}" style="width:950px; height: 400px">
+                    <img src="{{ object.cover.url }}" style="width:1100px; height: 400px">
                     </div>
                     {% endif %}
+                    <div class="info"><p style="font-size:22px;">Автор: {{ object.author }}</p></br><p style="font-size:22px;">Дата: {{ object.date }}</p></div>
+                    
                     <hr/><br/><br/><br/>
-                    <p style="font-size:18px;"> {{ object.body }}</p>
+                    <p style="font-size:22px;"> {{ object.body }}</p>
                 
                 {% if user == object.author %}
-                    <p>by {{ object.author }} | {{ object.date }}</p><p><a href="{% url 'article_edit' article.pk%}">Изменить</a> | <a href="{% url 'article_delete' article.pk %}">Удалить</a></p>
-                {% else %}
-                    <p>by {{ object.author }} | {{ object.date }}</p>
+                    <p><a href="{% url 'article_edit' article.pk%}">Изменить</a> | <a href="{% url 'article_delete' article.pk %}">Удалить</a></p>
                 {% endif %}
                 </div> 
                 <p>Назад к другим <a href="{% url 'article_list'%}">Новостям</a></p>
@@ -95,4 +102,5 @@
                 showCase.classList.toggle('active')
             })
         </script>
-{% endblock %}
+</body>
+</html>   
