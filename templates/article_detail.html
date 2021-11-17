@@ -1,15 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style_article_detail.css'%}">
-    <link rel="shortcut icon" href="{% static 'ico/favicon.ico' %}" type="image/x-icon">
-    <title>{{ object.title }}</title>
+{% extends 'index.html' %}
+{% load static%}
+{% block title %}Статьи{% endblock %} 
 
-
+{% block content %}
     <section class="showcase">
             <header>
                 <a href={% url 'home' %}><h2 class="logo">Just Chill It</h2></a>
@@ -38,11 +31,8 @@
                 <div class="toggle"></div>
             </header>
 
-
-            <div class="overlay"></div>
-
             
-            <div class="article-entry" >
+            <div class="article-entry" style="padding-left: 20px;">
                 <div class="text-article">
                     <h2>{{ object.title }}</h2></br>
                     {% if object.cover.url%}
@@ -102,5 +92,4 @@
                 showCase.classList.toggle('active')
             })
         </script>
-</body>
-</html>   
+{% endblock %}  
